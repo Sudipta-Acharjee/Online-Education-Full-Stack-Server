@@ -54,8 +54,8 @@ client.connect(err => {
 
     app.post('/addAService', (req, res) => {
         const file = req.files.file;
-        const description = req.body.description;
-        const title = req.body.title;
+        const Description = req.body.Description;
+        const Title = req.body.Title;
         const newImg = file.data;
         const encImg = newImg.toString('base64');
         console.log(Description, Title, file);
@@ -64,13 +64,13 @@ client.connect(err => {
             size: file.size,
             img: Buffer.from(encImg, 'base64')
         }
-        adminCollection.insertOne({ description, title, image })
+        learnerCollection.insertOne({ Description, Title, image })
             .then(result => {
                 res.send(result.insertedCount > 0);
             })
     })
     app.get('/service', (req, res) => {
-        adminCollection.find({})
+        learnerCollection.find({})
             .toArray((err, documents) => {
                 res.send(documents);
             })
