@@ -54,8 +54,8 @@ client.connect(err => {
 
     app.post('/addAService', (req, res) => {
         const file = req.files.file;
-        const Description = req.body.Description;
-        const Title = req.body.Title;
+        const description = req.body.description;
+        const title = req.body.title;
         const newImg = file.data;
         const encImg = newImg.toString('base64');
         console.log(Description, Title, file);
@@ -64,7 +64,7 @@ client.connect(err => {
             size: file.size,
             img: Buffer.from(encImg, 'base64')
         }
-        learnerCollection.insertOne({ Description, Title, image })
+        learnerCollection.insertOne({ description, title, image })
             .then(result => {
                 res.send(result.insertedCount > 0);
             })
