@@ -64,13 +64,13 @@ client.connect(err => {
             size: file.size,
             img: Buffer.from(encImg, 'base64')
         }
-        learnerCollection.insertOne({ description, title, image })
+        adminCollection.insertOne({ description, title, image })
             .then(result => {
                 res.send(result.insertedCount > 0);
             })
     })
     app.get('/service', (req, res) => {
-        learnerCollection.find({})
+        adminCollection.find({})
             .toArray((err, documents) => {
                 res.send(documents);
             })
