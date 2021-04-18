@@ -63,7 +63,8 @@ client.connect(err => {
             contentType: file.mimetype,
             size: file.size,
             img: Buffer.from(encImg, 'base64')
-        }
+        };
+
         learnerCollection.insertOne({ Description, Title, image })
             .then(result => {
                 res.send(result.insertedCount > 0);
